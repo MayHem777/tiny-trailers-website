@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Tiny Trailers — Get a Free Quote</title>
+  <meta name="description" content="Get a free quote on a custom tiny home trailer. Call or text 0401 744 844 or send us a message. Based in Noosaville, Sunshine Coast." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="nav__logo">Tiny <span>Trailers</span></a>
+        <ul class="nav__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn--primary nav__cta">Get a Quote</a>
+        <button class="nav__toggle" aria-label="Toggle menu" onclick="toggleNav()">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+    <div class="nav__mobile" id="mobileNav">
+      <a href="/">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn--primary" style="margin-top:0.5rem;text-align:center;">Get a Quote</a>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Get in Touch</p>
+      <h1>Get a Free Quote</h1>
+      <p>Tell us about your build and we'll get back to you with pricing and advice.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <div class="contact-info">
+          <div class="contact-detail">
+            <h3>Phone / Text</h3>
+            <a href="tel:0401744844">0401 744 844</a>
+          </div>
+          <div class="contact-detail">
+            <h3>Email</h3>
+            <a href="mailto:info@tinytrailers.com.au">info@tinytrailers.com.au</a>
+          </div>
+          <div class="contact-detail">
+            <h3>Location</h3>
+            <p>Noosaville, QLD 4566</p>
+          </div>
+          <div class="contact-detail">
+            <h3>Also See</h3>
+            <a href="https://www.sunshinetinyhouses.com.au" target="_blank" rel="noopener" style="color:var(--color-primary)">Sunshine Tiny Houses →</a>
+            <p style="font-size:0.875rem;margin-top:0.25rem;">Looking for a complete tiny home? Visit our sister company.</p>
+          </div>
+        </div>
+
+        <form class="contact-form" action="https://formsubmit.co/info@tinytrailers.com.au" method="POST">
+          <input type="hidden" name="_subject" value="New quote enquiry — Tiny Trailers website" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://www.tinytrailers.com.au/thank-you.html" />
+          <input type="text" name="_honey" style="display:none" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="trailer">Trailer Type</label>
+            <select id="trailer" name="trailer">
+              <option value="">— Select a trailer type —</option>
+              <option>Dual-Axle 3.2T (standard width)</option>
+              <option>Tri-Axle 4.5T (2.4m wide)</option>
+              <option>Tri-Axle 4.5T (3.0m wide)</option>
+              <option>Custom / Oversize</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="size">Approximate Size</label>
+            <input type="text" id="size" name="size" placeholder="e.g. 7.2m × 2.4m" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your build — timeline, toilet system, any special requirements…"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%;padding:1rem;">Send Enquiry</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="nav__logo">Tiny <span style="color:var(--color-accent)">Trailers</span></div>
+          <p>Custom tiny home trailers built on the Sunshine Coast. Rover-approved, ADR-compliant, Duragal construction.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:0401744844">0401 744 844</a></li>
+            <li><a href="mailto:info@tinytrailers.com.au">info@tinytrailers.com.au</a></li>
+            <li>Noosaville, QLD 4566</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© Tiny Trailers 2025</span>
+        <span>Also see <a href="https://www.sunshinetinyhouses.com.au" style="color:var(--color-accent)">Sunshine Tiny Houses</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="tel:0401744844" class="sticky-call">📞 Call for a Free Quote</a>
+  <script>function toggleNav(){document.getElementById('mobileNav').classList.toggle('open');}</script>
+</body>
+</html>
