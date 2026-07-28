@@ -649,16 +649,26 @@ p  { color: var(--color-text-body); }
   padding-left: 0.8rem;
   margin-bottom: 0.9rem;
 }
-.product-card__head .card-warning {
-  margin: 0.5rem 0 0.6rem;
-  padding: 0.45rem 0.6rem;
-  background: rgba(200, 169, 110, 0.16);
-  border-left: 3px solid var(--color-accent);
-  border-radius: 4px;
-  font-size: 0.76rem;
-  line-height: 1.4;
+/* sits below the dark head now, so it needs light-background colours */
+.card-warning {
+  margin: 0;
+  padding: 0.7rem 1.5rem;
+  background: rgba(200, 169, 110, 0.18);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.78rem;
+  line-height: 1.45;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-text);
+}
+
+/* Equal-height dark heads: card 3's tag wraps to two lines, so without a
+   floor the three bands finish at different depths. Content is bottom-aligned
+   so the GVM lines sit on the same baseline across all three. */
+.product-card__head {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 116px;
 }
 /* ─── PRODUCT CARD ALIGNMENT ──────────────────────────────────────────────── */
 /* Cards carry different numbers of price rows, and the 3.0m card has an extra
