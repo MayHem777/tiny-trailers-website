@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -142,12 +142,14 @@
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" />
+              <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" autocomplete="tel" inputmode="tel" aria-describedby="phone-error" />
+              <p class="field-error" id="phone-error" role="alert" hidden></p>
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" aria-describedby="email-error" required />
+            <p class="field-error" id="email-error" role="alert" hidden></p>
           </div>
           <div class="form-group">
             <label for="trailer">Trailer Type</label>
@@ -214,6 +216,71 @@
   </footer>
 
   <a href="tel:0401744844" class="sticky-call">📞 Call for a Free Quote</a>
-  <script>function toggleNav(){document.getElementById('mobileNav').classList.toggle('open');}document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+  <script>function toggleNav(){document.getElementById('mobileNav').classList.toggle('open');}document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});
+(function () {
+  var form  = document.querySelector('.contact-form');
+  if (!form) return;
+  var phone = document.getElementById('phone');
+  var email = document.getElementById('email');
+
+  // Australian numbers: 10 digits starting 0, or +61 / 61 with the leading 0 dropped.
+  // Area/prefix digit must be 2,3,4,7 or 8. Spaces, dashes, dots and brackets are ignored.
+  function phoneMsg(raw) {
+    var v = (raw || '').trim();
+    if (!v) return '';                                  // optional field
+    var d = v.replace(/[\s().-]/g, '');
+    if (!/^\+?\d+$/.test(d)) return 'Use digits only — for example 0412 345 678.';
+    if (!/^(?:\+?61|0)[23478]\d{8}$/.test(d)) {
+      return 'Enter a complete Australian number, e.g. 0412 345 678 or 07 5455 1234.';
+    }
+    return '';
+  }
+
+  // Stricter than the browser default, which accepts "a@b" with no dot or TLD.
+  function emailMsg(raw) {
+    var v = (raw || '').trim();
+    if (!v) return 'Please enter your email address.';
+    if (!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v)) {
+      return 'Enter a complete email address, e.g. jane@example.com.';
+    }
+    return '';
+  }
+
+  function show(input, msg) {
+    var box = document.getElementById(input.id + '-error');
+    if (!box) return !msg;
+    if (msg) {
+      box.textContent = msg; box.hidden = false;
+      input.classList.add('input-invalid');
+      input.setAttribute('aria-invalid', 'true');
+    } else {
+      box.hidden = true; box.textContent = '';
+      input.classList.remove('input-invalid');
+      input.removeAttribute('aria-invalid');
+    }
+    return !msg;
+  }
+
+  function checkPhone() { return show(phone, phoneMsg(phone.value)); }
+  function checkEmail() { return show(email, emailMsg(email.value)); }
+
+  phone.addEventListener('blur', checkPhone);
+  email.addEventListener('blur', checkEmail);
+  // once a field has been flagged, clear the error as soon as it becomes valid
+  phone.addEventListener('input', function () { if (phone.classList.contains('input-invalid')) checkPhone(); });
+  email.addEventListener('input', function () { if (email.classList.contains('input-invalid')) checkEmail(); });
+
+  form.addEventListener('submit', function (e) {
+    var okPhone = checkPhone();
+    var okEmail = checkEmail();
+    if (!okPhone || !okEmail) {
+      e.preventDefault();
+      var first = !okPhone ? phone : email;
+      first.focus();
+      first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  });
+})();
+</script>
 </body>
 </html>

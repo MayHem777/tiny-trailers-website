@@ -677,3 +677,21 @@ p  { color: var(--color-text-body); }
 .product-card { display: flex; flex-direction: column; }
 .product-card__body { flex: 1 1 auto; }
 .product-card__foot { margin-top: auto; }
+
+/* ─── FORM VALIDATION ─────────────────────────────────────────────────────── */
+.field-error {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #c0392b;
+}
+.field-error[hidden] { display: none; }
+.contact-form .input-invalid {
+  border-color: #c0392b;
+  background: rgba(192, 57, 43, 0.04);
+}
+.contact-form .input-invalid:focus {
+  outline: 2px solid #c0392b;
+  outline-offset: 1px;
+}
