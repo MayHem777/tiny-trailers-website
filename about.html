@@ -10,6 +10,8 @@
   <meta name="geo.region" content="AU-QLD" />
   <meta name="geo.placename" content="Noosaville" />
   <meta name="theme-color" content="#5c6a5b" />
+  <link rel="icon" href="images/tt-favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="images/tt-icon-180.png" />
 
   <link rel="canonical" href="https://www.tinytrailers.com.au/about.html" />
 
@@ -72,7 +74,7 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav">
-        <a href="/" class="nav__logo">Tiny <span>Trailers</span></a>
+        <a href="/" class="nav__logo"><img src="images/tt-logo-onlight.png" alt="Tiny Trailers" width="849" height="224" /></a>
         <ul class="nav__links">
           <li><a href="/">Home</a></li>
           <li><a href="about.html" class="active">About</a></li>
@@ -160,8 +162,14 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div class="nav__logo">Tiny <span style="color:var(--color-accent)">Trailers</span></div>
+          <div class="footer-logo"><img src="images/tt-logo-ondark.png" alt="Tiny Trailers" width="849" height="224" /></div>
           <p>Custom tiny home trailers built on the Sunshine Coast. Rover-approved, ADR-compliant, Duragal construction. Serving Queensland builders.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/tinytrailersaustralia/" target="_blank" rel="noopener" aria-label="Tiny Trailers on Instagram" style="color:var(--color-accent)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+              @tinytrailersaustralia
+            </a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Pages</h4>
@@ -182,13 +190,13 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© Tiny Trailers 2025 — Noosaville QLD</span>
+        <span>© Tiny Trailers <span class="yr">2026</span> — Noosaville QLD</span>
         <span>Also see <a href="https://www.sunshinetinyhouses.com.au" style="color:var(--color-accent)">Sunshine Tiny Houses</a></span>
       </div>
     </div>
   </footer>
 
   <a href="tel:0401744844" class="sticky-call">📞 Call for a Free Quote</a>
-  <script>function toggleNav(){document.getElementById('mobileNav').classList.toggle('open');}</script>
+  <script>function toggleNav(){document.getElementById('mobileNav').classList.toggle('open');}document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 </body>
 </html>

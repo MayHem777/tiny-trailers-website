@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thanks! | Tiny Trailers</title>
+  <link rel="icon" href="images/tt-favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="images/tt-icon-180.png" />
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +16,7 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav">
-        <a href="/" class="nav__logo">Tiny <span>Trailers</span></a>
+        <a href="/" class="nav__logo"><img src="images/tt-logo-onlight.png" alt="Tiny Trailers" width="849" height="224" /></a>
         <ul class="nav__links">
           <li><a href="/">Home</a></li>
           <li><a href="about.html">About</a></li>
@@ -37,9 +39,10 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-bottom" style="border-top:none;padding-top:0;">
-        <span>© Tiny Trailers 2025</span>
+        <span>© Tiny Trailers <span class="yr">2026</span></span>
       </div>
     </div>
   </footer>
+  <script>document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 </body>
 </html>
