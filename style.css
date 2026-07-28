@@ -622,3 +622,23 @@ p  { color: var(--color-text-body); }
   .callout { padding: 1.35rem 1.4rem; }
   .callout h3 { font-size: 1.15rem; }
 }
+
+/* ─── HEIGHT CARD SPEC + COST ─────────────────────────────────────────────── */
+.height-card__spec {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  margin-bottom: 0.6rem;
+}
+.height-card__cost {
+  margin-top: 1rem;
+  padding: 0.8rem 0.95rem;
+  background: rgba(200, 169, 110, 0.14);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text-body);
+}
+.height-card__cost strong { color: var(--color-text); font-weight: 700; }
