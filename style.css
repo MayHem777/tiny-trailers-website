@@ -553,11 +553,11 @@ p  { color: var(--color-text-body); }
 
 /* ─── BRAND LOGO (real asset, replaces the old text wordmark) ─────────────── */
 .nav__logo { display: inline-flex; align-items: center; }
-.nav__logo img { display: block; height: 34px; width: auto; }
+.nav__logo img { display: block; height: 40px; width: auto; }
 .footer-logo { margin-bottom: 0.75rem; }
 .footer-logo img { display: block; height: 38px; width: auto; }
 @media (max-width: 640px) {
-  .nav__logo img { height: 28px; }
+  .nav__logo img { height: 30px; }
 }
 
 /* ─── INSTAGRAM STRIP ─────────────────────────────────────────────────────── */
