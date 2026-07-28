@@ -649,3 +649,21 @@ p  { color: var(--color-text-body); }
   padding-left: 0.8rem;
   margin-bottom: 0.9rem;
 }
+.product-card__head .card-warning {
+  margin: 0.5rem 0 0.6rem;
+  padding: 0.45rem 0.6rem;
+  background: rgba(200, 169, 110, 0.16);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 4px;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--color-white);
+}
+/* ─── PRODUCT CARD ALIGNMENT ──────────────────────────────────────────────── */
+/* Cards carry different numbers of price rows, and the 3.0m card has an extra
+   compliance warning in its head. Without this the "Get a Quote" buttons sit at
+   three different heights. */
+.product-card { display: flex; flex-direction: column; }
+.product-card__body { flex: 1 1 auto; }
+.product-card__foot { margin-top: auto; }
