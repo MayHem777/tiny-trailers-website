@@ -642,3 +642,10 @@ p  { color: var(--color-text-body); }
   color: var(--color-text-body);
 }
 .height-card__cost strong { color: var(--color-text); font-weight: 700; }
+.height-card__note {
+  font-weight: 600;
+  color: var(--color-text);
+  border-left: 3px solid var(--color-primary);
+  padding-left: 0.8rem;
+  margin-bottom: 0.9rem;
+}
