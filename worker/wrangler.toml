@@ -1,0 +1,18 @@
+name = "tiny-trailers-contact"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+preview_urls = false
+
+# Secrets (set with `npx wrangler secret put <NAME>` from this folder, never in the repo):
+#   TURNSTILE_SECRET  – secret key of the Turnstile widget "tiny-trailers-contact"
+#   RESEND_API_KEY    – Resend sending-only key for send.tinytrailers.com.au
+
+[vars]
+ALLOWED_ORIGINS = "https://www.tinytrailers.com.au"
+TURNSTILE_HOSTNAMES = "www.tinytrailers.com.au"
+MAIL_FROM = "Tiny Trailers website <website@send.tinytrailers.com.au>"
+MAIL_TO = "info@tinytrailers.com.au"
+
+[observability]
+enabled = true

@@ -36,6 +36,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=9" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -129,12 +130,9 @@
           </div>
         </div>
 
-        <form class="contact-form" action="https://formsubmit.co/info@tinytrailers.com.au" method="POST">
-          <input type="hidden" name="_subject" value="New quote enquiry — Tiny Trailers website" />
-          <input type="hidden" name="_captcha" value="false" />
-          <!-- After domain cutover, change _next back to https://www.tinytrailers.com.au/thank-you.html -->
-          <input type="hidden" name="_next" value="https://www.tinytrailers.com.au/thank-you.html" />
-          <input type="text" name="_honey" style="display:none" />
+        <!-- Posts to the Cloudflare Worker in worker/ (Turnstile + Resend). See CLAUDE.md "Contact form". -->
+        <form class="contact-form" action="https://tiny-trailers-contact.mitchjcroft.workers.dev/api/contact" method="POST">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
 
           <div class="form-row">
             <div class="form-group">
@@ -171,6 +169,8 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" placeholder="Tell us about your build — timeline, toilet system, any special requirements…"></textarea>
           </div>
+          <div class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY" data-appearance="interaction-only" data-action="contact"></div>
+          <p class="field-error form-error" id="form-error" role="alert" hidden></p>
           <button type="submit" class="btn btn--primary" style="width:100%;padding:1rem;">Send Enquiry</button>
         </form>
 
@@ -271,14 +271,56 @@
   phone.addEventListener('input', function () { if (phone.classList.contains('input-invalid')) checkPhone(); });
   email.addEventListener('input', function () { if (email.classList.contains('input-invalid')) checkEmail(); });
 
+  var formError = document.getElementById('form-error');
+  var button = form.querySelector('button[type="submit"]');
+  var CALL = ' Or call or text us on 0401 744 844.';
+  var MESSAGES = {
+    captcha:     'We couldn’t confirm you’re not a robot. Please wait a moment and try again.',
+    email:       'Please check your email address and try again.',
+    phone:       'Please check your phone number and try again.',
+    name:        'Please enter your name.',
+    junk:        'Please write your name and message in words and try again.',
+    send_failed: 'Sorry, your enquiry didn’t send.'
+  };
+  function showFormError(msg) {
+    formError.textContent = msg + CALL;
+    formError.hidden = false;
+  }
+
   form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    formError.hidden = true;
     var okPhone = checkPhone();
     var okEmail = checkEmail();
     if (!okPhone || !okEmail) {
-      e.preventDefault();
       var first = !okPhone ? phone : email;
       first.focus();
       first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return;
+    }
+    var data = new FormData(form);
+    if (!data.get('cf-turnstile-response')) {
+      showFormError(MESSAGES.captcha);
+      return;
+    }
+    button.disabled = true;
+    var label = button.textContent;
+    button.textContent = 'Sending…';
+    fetch(form.action, { method: 'POST', body: data })
+      .then(function (res) { return res.json().catch(function () { return { ok: false }; }); })
+      .then(function (r) {
+        if (r && r.ok) { window.location.href = 'thank-you.html'; return; }
+        showFormError(MESSAGES[r && r.error] || 'Sorry, something went wrong sending your enquiry.');
+        fail();
+      })
+      .catch(function () {
+        showFormError('Sorry, we couldn’t reach our server. Please check your connection and try again.');
+        fail();
+      });
+    function fail() {
+      button.disabled = false;
+      button.textContent = label;
+      if (window.turnstile) window.turnstile.reset();   // tokens are single-use
     }
   });
 })();

@@ -1,0 +1,14 @@
+{
+  "health_url": null,
+  "urls": ["https://www.tinytrailers.com.au", "https://tiny-trailers-contact.mitchjcroft.workers.dev/api/contact"],
+  "cloudflare": { "workers": ["tiny-trailers-contact"], "pages": [] },
+  "cron": [],
+  "systemd": [],
+  "heartbeats": {},
+  "access": "public",
+  "public_urls": ["https://www.tinytrailers.com.au", "https://tiny-trailers-contact.mitchjcroft.workers.dev"],
+  "public_repo": false,
+  "secrets": ["TURNSTILE_SECRET", "RESEND_API_KEY"],
+  "credentials": [],
+  "notes": "Public marketing site on GitHub Pages (custom domain www, DNS at VentraIP). Contact form posts to the public Worker tiny-trailers-contact (Turnstile + origin lock to https://www.tinytrailers.com.au, mails info@ via Resend from send.tinytrailers.com.au). The Worker is meant to be public: browsers post to it. Credentials are recorded in claude-monitor inventory/credentials.json."
+}
