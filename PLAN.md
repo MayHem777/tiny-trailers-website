@@ -12,11 +12,13 @@ site or the root mail records.
 - [x] 2026-10-19: Resend domain send.tinytrailers.com.au (Tokyo) added; 3 records at VentraIP (TXT resend._domainkey.send,
       CNAME rsend.send → rsend-apne1.forge.rmta.net, CNAME send.send → send.forge.rmta.net), checked live from Claudio
       on ns1.nameserver.net.au and 1.1.1.1; root MX/SPF/A/www unchanged; no DMARC added (it would sit on the root)
-- [ ] Mitch: Verify in Resend, sending-only API key, Turnstile widget (see Waiting on Mitch)
-- [ ] Put the real site key in `contact.html` (replace `TURNSTILE_SITE_KEY`), set the 2 Worker secrets
-- [ ] Deploy the Worker (ask), check it: curl reject cases against workers.dev, Resend test send to info@
+- [x] Resend domain verified, sending-only key + Turnstile widget made by Mitch; site key 0x4AAAAAAFaxsJiRGGuRBoiy in
+      contact.html; both secrets in secrets.env and on the Worker; both recorded in the monitor inventory
+- [x] 2026-10-19 Worker deployed with Mitch's OK (version 826800b9). Live reject tests: no/wrong/http origin 403,
+      honeypot 400, missing + invalid token 400, GET 405, preflight 204 with ACAO www only. Turnstile secret accepted
+      by siteverify (only the dummy token was refused). Resend test to info@ accepted (id 01a15196…); arrival to be
+      confirmed by Mitch
 - [ ] Merge `turnstile-contact` to main (ask: goes live), real submission on www, confirm it lands in info@
-- [ ] Record the Turnstile secret and Resend key in claude-monitor inventory/credentials.json
 
 ## Assumptions
 - 2026-10-19: Site stays on GitHub Pages; the handler is a stand-alone Worker on workers.dev (Mitch chose this, no DNS change).
@@ -27,10 +29,6 @@ site or the root mail records.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- **Resend + DNS for the contact form**: DNS records are in (2026-10-19). Left: click Verify in Resend, create a
-  sending-only API key for send.tinytrailers.com.au and store it with `set-secret TINY_TRAILERS_RESEND_KEY`
-  (recommend yes: needed before the form can go live).
-- **Turnstile widget**: create `tiny-trailers-contact` (Managed, hostname tinytrailers.com.au), paste me the site key,
-  store the secret with `set-secret TINY_TRAILERS_TURNSTILE_SECRET` (recommend yes; our token can't create widgets).
-- **Deploy the Worker, then merge to main** once both are done (recommend yes: both go live, so they're yours to OK).
+- **Contact form go-live**: did the "TEST — New quote enquiry" email reach info@tinytrailers.com.au? Then OK to merge
+  `turnstile-contact` to main (goes live on www); I send one real enquiry and check it arrives (recommend yes).
 - **FormSubmit**: block mail from formsubmit.co in the info@ VentraIP mailbox after go-live (recommend yes).
