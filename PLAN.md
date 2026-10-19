@@ -32,4 +32,4 @@ site or the root mail records.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- **Contact form live test**: confirm the enquiry from "Claude Test (Mitch)" (19 Oct) arrived in info@tinytrailers.com.au.
+- Nothing. Form confirmed end to end by Mitch 2026-10-19 (his own test arrived in info@ with all fields).
