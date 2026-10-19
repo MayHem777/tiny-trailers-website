@@ -21,6 +21,8 @@ site or the root mail records.
 - [x] 2026-10-19 merged to main with Mitch's OK (70076a2), live on www. Resend test reached info@ (Mitch confirmed).
       Real enquiry sent from Chrome on www: Turnstile passed, Worker returned ok, page went to thank-you.html
 
+- [x] 2026-10-19 info@ webmail filter "Block FormSubmit" (From contains formsubmit.co → Spam), set up by Mitch via Cowork
+
 ## Assumptions
 - 2026-10-19: Site stays on GitHub Pages; the handler is a stand-alone Worker on workers.dev (Mitch chose this, no DNS change).
 - 2026-10-19: Resend sending domain is `send.tinytrailers.com.au`, From `website@send.tinytrailers.com.au` (Mitch).
@@ -31,5 +33,3 @@ site or the root mail records.
 
 ## Waiting on Mitch
 - **Contact form live test**: confirm the enquiry from "Claude Test (Mitch)" (19 Oct) arrived in info@tinytrailers.com.au.
-- **FormSubmit**: block mail from formsubmit.co in the info@ VentraIP mailbox (VentraIP webmail → Settings → Filters →
-  From contains formsubmit.co → Delete) (recommend yes: the old endpoint accepts posts forever).
