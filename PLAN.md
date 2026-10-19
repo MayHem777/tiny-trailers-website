@@ -18,7 +18,8 @@ site or the root mail records.
       honeypot 400, missing + invalid token 400, GET 405, preflight 204 with ACAO www only. Turnstile secret accepted
       by siteverify (only the dummy token was refused). Resend test to info@ accepted (id 01a15196…); arrival to be
       confirmed by Mitch
-- [ ] Merge `turnstile-contact` to main (ask: goes live), real submission on www, confirm it lands in info@
+- [x] 2026-10-19 merged to main with Mitch's OK (70076a2), live on www. Resend test reached info@ (Mitch confirmed).
+      Real enquiry sent from Chrome on www: Turnstile passed, Worker returned ok, page went to thank-you.html
 
 ## Assumptions
 - 2026-10-19: Site stays on GitHub Pages; the handler is a stand-alone Worker on workers.dev (Mitch chose this, no DNS change).
@@ -29,6 +30,6 @@ site or the root mail records.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- **Contact form go-live**: did the "TEST — New quote enquiry" email reach info@tinytrailers.com.au? Then OK to merge
-  `turnstile-contact` to main (goes live on www); I send one real enquiry and check it arrives (recommend yes).
-- **FormSubmit**: block mail from formsubmit.co in the info@ VentraIP mailbox after go-live (recommend yes).
+- **Contact form live test**: confirm the enquiry from "Claude Test (Mitch)" (19 Oct) arrived in info@tinytrailers.com.au.
+- **FormSubmit**: block mail from formsubmit.co in the info@ VentraIP mailbox (VentraIP webmail → Settings → Filters →
+  From contains formsubmit.co → Delete) (recommend yes: the old endpoint accepts posts forever).
