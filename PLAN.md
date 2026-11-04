@@ -21,11 +21,11 @@ site or the root mail records.
 - [x] 2026-10-19 merged to main with Mitch's OK (70076a2), live on www. Resend test reached info@ (Mitch confirmed).
       Real enquiry sent from Chrome on www: Turnstile passed, Worker returned ok, page went to thank-you.html
 
-- [ ] 2026-11-04 BUG (client reported): Android Chrome autofill fills the hidden `_honey` field, so the Worker answered
+- [x] 2026-11-04 BUG (client reported): Android Chrome autofill fills the hidden `_honey` field, so the Worker answered
       `rejected` and the page showed "Sorry, something went wrong". Mitch's 3 phone tries at 16:48–16:50 all 400 with
       no Turnstile or Resend log, which leaves only the honeypot. Fix on branch `fix-autofill-honeypot`: honeypot now
       only logged (Turnstile is the bot gate), every rejection reason logged. Local tests pass (autofill case sends,
-      no-token/bad email/wrong origin still refused). Needs Mitch's OK for `cd worker && npx wrangler deploy`
+      no-token/bad email/wrong origin still refused). Deployed with Mitch's OK (version 82e2b932); live check from box Chrome with honeypot filled got past it and Turnstile to validation (email swapped to invalid, nothing sent). Merged to main
 - [x] 2026-10-19 info@ webmail filter "Block FormSubmit" (From contains formsubmit.co → Spam), set up by Mitch via Cowork
 
 ## Assumptions
@@ -38,5 +38,4 @@ site or the root mail records.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- 2026-11-04: OK to deploy the honeypot fix to the live Worker (branch `fix-autofill-honeypot`), then merge to main.
-  Until then, enquiries from phones that use autofill are refused.
+- Nothing. Mitch to confirm a real phone enquiry with autofill arrives in info@ (2026-11-04 fix).
