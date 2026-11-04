@@ -38,4 +38,4 @@ site or the root mail records.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- Nothing. 2026-11-04 19:00 Mitch sent from his PC after the fix and it arrived in info@. Optional: one send from a phone using autofill.
+- Nothing. 2026-11-04 19:00 Mitch sent from his PC after the fix and it arrived in info@. 19:04 Mitch's Android phone send: log shows "honeypot filled" and the Worker still sent it (200), which confirms the cause.
