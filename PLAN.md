@@ -21,15 +21,22 @@ site or the root mail records.
 - [x] 2026-10-19 merged to main with Mitch's OK (70076a2), live on www. Resend test reached info@ (Mitch confirmed).
       Real enquiry sent from Chrome on www: Turnstile passed, Worker returned ok, page went to thank-you.html
 
+- [ ] 2026-11-04 BUG (client reported): Android Chrome autofill fills the hidden `_honey` field, so the Worker answered
+      `rejected` and the page showed "Sorry, something went wrong". Mitch's 3 phone tries at 16:48–16:50 all 400 with
+      no Turnstile or Resend log, which leaves only the honeypot. Fix on branch `fix-autofill-honeypot`: honeypot now
+      only logged (Turnstile is the bot gate), every rejection reason logged. Local tests pass (autofill case sends,
+      no-token/bad email/wrong origin still refused). Needs Mitch's OK for `cd worker && npx wrangler deploy`
 - [x] 2026-10-19 info@ webmail filter "Block FormSubmit" (From contains formsubmit.co → Spam), set up by Mitch via Cowork
 
 ## Assumptions
 - 2026-10-19: Site stays on GitHub Pages; the handler is a stand-alone Worker on workers.dev (Mitch chose this, no DNS change).
 - 2026-10-19: Resend sending domain is `send.tinytrailers.com.au`, From `website@send.tinytrailers.com.au` (Mitch).
 - 2026-10-19: Resend region Tokyo (ap-northeast-1), the closest to Brisbane. Resend now uses 2 CNAMEs for sending, not MX+TXT.
+- 2026-11-04: Honeypot no longer rejects (phone autofill fills it); it is logged only.
 - 2026-10-19: Honeypot and bad Turnstile return a 400 with an error code (not a fake success), so tests can see it.
 - 2026-10-19: No rate limit beyond Turnstile; add the Workers rate-limit binding if spam gets through.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- Nothing. Form confirmed end to end by Mitch 2026-10-19 (his own test arrived in info@ with all fields).
+- 2026-11-04: OK to deploy the honeypot fix to the live Worker (branch `fix-autofill-honeypot`), then merge to main.
+  Until then, enquiries from phones that use autofill are refused.

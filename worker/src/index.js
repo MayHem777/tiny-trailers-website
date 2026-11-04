@@ -39,15 +39,20 @@ export default {
     try {
       form = await request.formData();
     } catch {
+      console.log('rejected', 'unreadable form data');
       return json({ ok: false, error: 'bad_request' }, 400, cors);
     }
     const f = (k, max) => clean(form.get(k), max);
 
-    // Honeypot: hidden from people, filled by bots.
-    if (f('_honey', 500)) return json({ ok: false, error: 'rejected' }, 400, cors);
+    // Honeypot: hidden from people, but phone autofill (Android Chrome) fills it too, so it only gets logged.
+    // Turnstile below is the real bot check. Rejecting on it lost real enquiries (2026-11-04).
+    if (f('_honey', 500)) console.log('honeypot filled (autofill or bot), continuing to Turnstile');
 
     const token = f('cf-turnstile-response', 4096);
-    if (!token) return json({ ok: false, error: 'captcha' }, 400, cors);
+    if (!token) {
+      console.log('rejected', 'no turnstile token');
+      return json({ ok: false, error: 'captcha' }, 400, cors);
+    }
     const ts = await verifyTurnstile(env, token, request.headers.get('CF-Connecting-IP'));
     if (!ts.ok) {
       console.log('turnstile failed', JSON.stringify(ts.detail));
@@ -63,7 +68,10 @@ export default {
       message: f('message', 5000, true),
     };
     const problem = validate(e);
-    if (problem) return json({ ok: false, error: problem }, 400, cors);
+    if (problem) {
+      console.log('rejected', problem);
+      return json({ ok: false, error: problem }, 400, cors);
+    }
 
     const sent = await sendEmail(env, e);
     if (!sent.ok) {
