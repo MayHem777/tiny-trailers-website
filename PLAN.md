@@ -38,4 +38,4 @@ site or the root mail records.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- Nothing. Mitch to confirm a real phone enquiry with autofill arrives in info@ (2026-11-04 fix).
+- Nothing. 2026-11-04 19:00 Mitch sent from his PC after the fix and it arrived in info@. Optional: one send from a phone using autofill.
