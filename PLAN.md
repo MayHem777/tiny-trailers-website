@@ -27,6 +27,7 @@ site or the root mail records.
       only logged (Turnstile is the bot gate), every rejection reason logged. Local tests pass (autofill case sends,
       no-token/bad email/wrong origin still refused). Deployed with Mitch's OK (version 82e2b932); live check from box Chrome with honeypot filled got past it and Turnstile to validation (email swapped to invalid, nothing sent). Merged to main
 - [x] 2026-10-19 info@ webmail filter "Block FormSubmit" (From contains formsubmit.co → Spam), set up by Mitch via Cowork
+- [ ] 2026-11-24 price change (approved by Mitch 24 Nov), branch `prices-2026-11`, NOT merged: dual-axle 4.8 m $13,005 → $11,990, 6.0 m $13,600 → $12,490, 7.0 m $13,975 → $12,890, 7.2 m $14,080 → $12,990; tri-axle 2.4 m 6.0 m $15,370 → $14,990, 7.2 m $15,965 → $15,490, 8.0 m $16,340 → $15,990, 8.4 m $16,445 → $16,190, 9.0 m $16,660 unchanged; 3.0 m range and reduced-height unchanged. Price list + Product JSON-LD updated together; JSON-LD parses, visible = schema size for size, rendered locally. Waiting on Mitch's OK to merge to main (live deploy)
 
 ## Assumptions
 - 2026-10-19: Site stays on GitHub Pages; the handler is a stand-alone Worker on workers.dev (Mitch chose this, no DNS change).
@@ -38,4 +39,5 @@ site or the root mail records.
 - 2026-10-19: A form without JavaScript can't send (Turnstile needs JS); the phone number is beside the form.
 
 ## Waiting on Mitch
-- Nothing. 2026-11-04 19:00 Mitch sent from his PC after the fix and it arrived in info@. 19:04 Mitch's Android phone send: log shows "honeypot filled" and the Worker still sent it (200), which confirms the cause.
+- 2026-11-24: OK to merge `prices-2026-11` (new trailer prices) to main, which puts them live.
+- (Closed) 2026-11-04 19:00 Mitch sent from his PC after the fix and it arrived in info@. 19:04 Mitch's Android phone send: log shows "honeypot filled" and the Worker still sent it (200), which confirms the cause.
